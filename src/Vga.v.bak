@@ -1,0 +1,79 @@
+module vga(
+	input CLOCK_50,
+	output reg GPIO_33,
+	output reg GPIO_31,
+	output reg GPIO_29,
+	output reg GPIO_27,
+	output reg GPIO_25
+);
+
+
+//=======================================================
+//  REG/WIRE declarations
+//=======================================================
+
+reg [15:0] vPos;
+reg [15:0] hPos;
+
+parameter [9:0] hVisiblePixels = 800;
+parameter [5:0] hFrontPorchPixels = 56;
+parameter [6:0] hSyncPixels = 120;
+parameter [6:0] hBackPorchPixels = 64;
+parameter [10:0] hTotalPixels = 1040;
+
+parameter [9:0] vVisibleLines = 600;
+parameter [5:0] vFrontPorchLines = 37;
+parameter [2:0] vSyncLines = 6;
+parameter [4:0] vBackPorchLines = 23;
+parameter [9:0] vTotalLines = 666;
+
+
+//=======================================================
+//  Structural coding
+//=======================================================
+
+always @(posedge CLOCK_50)
+begin
+	hPos <= hPos + 1'b1;
+
+	if (hPos >= hTotalPixels)
+	begin
+		hPos <= 0;
+		vPos <= vPos + 1'b1;
+		
+		if (vPos >= vTotalLines)
+			vPos <= 0;
+	end
+	
+	// RGB
+	if ((vPos >= vFrontPorchLines)
+		& (vPos < vFrontPorchLines + vVisibleLines)
+		& (hPos >= hFrontPorchPixels)
+		& (hPos < hFrontPorchPixels + hVisiblePixels))
+		begin
+			GPIO_33 <= 1;
+			GPIO_31 <= 0;
+			GPIO_29 <= 1;
+		end
+	else
+		begin
+			GPIO_33 <= 0;
+			GPIO_31 <= 0;
+			GPIO_29 <= 0;
+		end
+	
+	// HSYNC
+	if (hPos < hTotalPixels - hSyncPixels)
+		GPIO_27 <= 0;
+	else
+		GPIO_27 <= 1;
+	
+	// VSYNC
+	if (vPos < vTotalLines - vSyncLines)
+		GPIO_25 <= 0;
+	else
+		GPIO_25 <= 1;	
+end
+
+
+endmodule

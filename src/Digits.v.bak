@@ -1,0 +1,12 @@
+module Digits(
+	input pixelClock
+);
+
+
+
+always @(posedge pixelClock)
+begin
+
+end
+
+endmodule

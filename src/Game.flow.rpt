@@ -1,0 +1,122 @@
+Flow report for Game
+Fri Jun 22 21:01:41 2018
+Quartus II 64-Bit Version 10.1 Build 197 01/19/2011 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++------------------------------------------------------------------------------------+
+; Flow Summary                                                                       ;
++------------------------------------+-----------------------------------------------+
+; Flow Status                        ; Successful - Fri Jun 22 21:01:39 2018         ;
+; Quartus II 64-Bit Version          ; 10.1 Build 197 01/19/2011 SP 1 SJ Web Edition ;
+; Revision Name                      ; Game                                          ;
+; Top-level Entity Name              ; Game                                          ;
+; Family                             ; Cyclone IV E                                  ;
+; Device                             ; EP4CE22F17C6                                  ;
+; Timing Models                      ; Final                                         ;
+; Total logic elements               ; 2,391 / 22,320 ( 11 % )                       ;
+;     Total combinational functions  ; 2,383 / 22,320 ( 11 % )                       ;
+;     Dedicated logic registers      ; 287 / 22,320 ( 1 % )                          ;
+; Total registers                    ; 287                                           ;
+; Total pins                         ; 18 / 154 ( 12 % )                             ;
+; Total virtual pins                 ; 0                                             ;
+; Total memory bits                  ; 0 / 608,256 ( 0 % )                           ;
+; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                               ;
+; Total PLLs                         ; 1 / 4 ( 25 % )                                ;
++------------------------------------+-----------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 06/22/2018 21:01:15 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; Game                ;
++-------------------+---------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                           ;
++-------------------------------------+-----------------------------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                                     ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+-----------------------------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 10995770589194.152971927512040                            ; --            ; --          ; --         ;
+; IP_TOOL_NAME                        ; ALTPLL                                                    ; --            ; --          ; --         ;
+; IP_TOOL_VERSION                     ; 10.1                                                      ; --            ; --          ; --         ;
+; MISC_FILE                           ; C:/Users/Andy/Desktop/youtube/fpga/software/game/Game.dpf ; --            ; --          ; --         ;
+; MISC_FILE                           ; VgaPll_bb.v                                               ; --            ; --          ; --         ;
+; MISC_FILE                           ; VgaPll.ppf                                                ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; 16764057                                                  ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                                     ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                                    ; --            ; --          ; Top        ;
++-------------------------------------+-----------------------------------------------------------+---------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:13     ; 1.0                     ; 4507 MB             ; 00:00:11                           ;
+; Fitter                    ; 00:00:08     ; 1.0                     ; 4647 MB             ; 00:00:08                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 4492 MB             ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 4545 MB             ; 00:00:03                           ;
+; Total                     ; 00:00:25     ; --                      ; --                  ; 00:00:23                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; andy-desktop     ; Windows 7 ; 6.2        ; x86_64         ;
+; Fitter                    ; andy-desktop     ; Windows 7 ; 6.2        ; x86_64         ;
+; Assembler                 ; andy-desktop     ; Windows 7 ; 6.2        ; x86_64         ;
+; TimeQuest Timing Analyzer ; andy-desktop     ; Windows 7 ; 6.2        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off Game -c Game
+quartus_fit --read_settings_files=off --write_settings_files=off Game -c Game
+quartus_asm --read_settings_files=off --write_settings_files=off Game -c Game
+quartus_sta Game -c Game
+
+
+

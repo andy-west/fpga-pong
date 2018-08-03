@@ -1,0 +1,199 @@
+module NesController(
+	input CLOCK_50,
+	input enable60Hz,
+	input CONTROLLER_DATA,
+	output reg CONTROLLER_LATCH,
+	output reg CONTROLLER_PULSE,
+	output reg [7:0] LED
+);
+
+reg [3:0] commState = 0;
+
+parameter [3:0] idle = 0;
+parameter [3:0] setLatch = 1;
+parameter [3:0] readA = 2;
+parameter [3:0] readB = 3;
+parameter [3:0] readSelect = 4;
+parameter [3:0] readStart = 5;
+parameter [3:0] readUp = 6;
+parameter [3:0] readDown = 7;
+parameter [3:0] readLeft = 8;
+parameter [3:0] readRight = 9;
+
+reg [10:0] count;
+
+// 12us = 600 positive clock edges.
+
+always @(posedge CLOCK_50)
+begin
+	if (enable60Hz)
+	begin
+		count <= 0;
+		commState <= setLatch;
+	end
+	
+	begin
+		case(commState)		
+			setLatch:
+				begin		
+					if (count < 600)
+						begin
+							CONTROLLER_LATCH <= 1;
+							count <= count + 1'b1;
+						end
+					else
+						begin
+							CONTROLLER_LATCH <= 0;
+							count <= 0;
+							commState <= readA;
+						end
+				end
+			readA:
+				begin			
+					if (count == 0)
+						LED[0] <= ~CONTROLLER_DATA;
+						
+					if (count < 300)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= readB;
+						end
+				end
+			readB:
+				begin
+					if (count < 300)
+						CONTROLLER_PULSE <= 1;
+					else
+						CONTROLLER_PULSE <= 0;
+						
+					if (count == 300)
+						LED[1] <= ~CONTROLLER_DATA;
+						
+					if (count < 600)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= readSelect;
+						end
+				end
+			readSelect:
+				begin
+					if (count < 300)
+						CONTROLLER_PULSE <= 1;
+					else
+						CONTROLLER_PULSE <= 0;
+						
+					if (count == 300)
+						LED[2] <= ~CONTROLLER_DATA;
+						
+					if (count < 600)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= readStart;
+						end
+				end
+			readStart:
+				begin
+					if (count < 300)
+						CONTROLLER_PULSE <= 1;
+					else
+						CONTROLLER_PULSE <= 0;
+						
+					if (count == 300)
+						LED[3] <= ~CONTROLLER_DATA;
+						
+					if (count < 600)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= readUp;
+						end
+				end
+			readUp:
+				begin
+					if (count < 300)
+						CONTROLLER_PULSE <= 1;
+					else
+						CONTROLLER_PULSE <= 0;
+						
+					if (count == 300)
+						LED[4] <= ~CONTROLLER_DATA;
+						
+					if (count < 600)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= readDown;
+						end
+				end
+			readDown:
+				begin
+					if (count < 300)
+						CONTROLLER_PULSE <= 1;
+					else
+						CONTROLLER_PULSE <= 0;
+						
+					if (count == 300)
+						LED[5] <= ~CONTROLLER_DATA;
+						
+					if (count < 600)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= readLeft;
+						end
+				end
+			readLeft:
+				begin
+					if (count < 300)
+						CONTROLLER_PULSE <= 1;
+					else
+						CONTROLLER_PULSE <= 0;
+						
+					if (count == 300)
+						LED[6] <= ~CONTROLLER_DATA;
+						
+					if (count < 600)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= readRight;
+						end
+				end
+			readRight:
+				begin
+					if (count < 300)
+						CONTROLLER_PULSE <= 1;
+					else
+						CONTROLLER_PULSE <= 0;
+						
+					if (count == 300)
+						LED[7] <= ~CONTROLLER_DATA;
+						
+					if (count < 600)
+						count <= count + 1'b1;
+					else
+						begin
+							count <= 0;
+							commState <= idle;
+						end
+				end
+			default:
+				begin
+					CONTROLLER_LATCH <= 0;
+					CONTROLLER_PULSE <= 0;
+				end
+		endcase
+	end
+end
+
+endmodule

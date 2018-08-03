@@ -1,0 +1,16 @@
+Fitter Status : Successful - Fri Jun 22 21:01:36 2018
+Quartus II 64-Bit Version : 10.1 Build 197 01/19/2011 SP 1 SJ Web Edition
+Revision Name : Game
+Top-level Entity Name : Game
+Family : Cyclone IV E
+Device : EP4CE22F17C6
+Timing Models : Final
+Total logic elements : 2,391 / 22,320 ( 11 % )
+    Total combinational functions : 2,383 / 22,320 ( 11 % )
+    Dedicated logic registers : 287 / 22,320 ( 1 % )
+Total registers : 287
+Total pins : 18 / 154 ( 12 % )
+Total virtual pins : 0
+Total memory bits : 0 / 608,256 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
+Total PLLs : 1 / 4 ( 25 % )

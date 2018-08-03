@@ -1,0 +1,6 @@
+
+State Machine - |Game|NesController:controller|commState
+Name commState.idle commState.readButton commState.setLatch 
+commState.idle 0 0 0 
+commState.setLatch 1 0 1 
+commState.readButton 1 1 0 
